@@ -31,7 +31,7 @@ class JukeBox(object):
 
     def _login(self, username, password):
         self._session.login(username, password)
-        self.logged_in.wait()
+        self._logged_in.wait()
         time.sleep(1)
 
     def _on_logged_in(self, session, error_type):
