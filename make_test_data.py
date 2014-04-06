@@ -6,9 +6,9 @@ INSERT INTO jukebox_song_queue VALUES (?)
 '''
 
 TEST_URIS = [
-    'spotify:track:5lB3bZKPhng9s4hKB1sSIe', 
-    'spotify:track:5MSfgtOBZkbxlcwsI9XNpf',
-    'spotify:track:1shuGbTnKx4AXjlx7IauM5'
+    'spotify:track:7udJ4LFSIrRnySD3eI8lad', 
+    'spotify:track:0p1VSXFdkr71f0nO21IEyq',
+    'spotify:track:68MToCqJRJvNW8tYoxDl5p'
 ]
 
 
@@ -20,6 +20,6 @@ if __name__ == '__main__':
     for uri in TEST_URIS:
         uri = (uri,)
         cursor.execute(INSERT_SONG, uri)
+        conn.commit()
 
-    conn.commit()
     conn.close()
