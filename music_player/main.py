@@ -56,6 +56,7 @@ class Jukebox(object):
                 self._session.player.play()
                 while not self._end_of_track.wait(0.1):
                     pass
+            self._end_of_track.clear()
             self._load_next_track()
 
 
