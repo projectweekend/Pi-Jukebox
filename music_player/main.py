@@ -43,9 +43,11 @@ class Jukebox(object):
     def _load_next_track(self):
         if self._current_track == None:
             spotify_uri = utils.get_song_uri()
+            print("URI: {0}".format(spotify_uri))
             if spotify_uri:
                 self._current_track = self._session.get_track(spotify_uri)
                 self._current_track.load()
+                print("Track: {0}".format(self._current_track.name))
 
     def _play_current_track(self):
         self._session.player.load(self._current_track)
