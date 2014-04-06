@@ -18,12 +18,11 @@ class Jukebox(object):
         self._loop.start()
         self._audio = spotify.AlsaSink(self._session)
         self._current_track = None
-        self._next_track = None
         self._end_of_track = threading.Event()
         self._logged_in = threading.Event()
         self._register_session_events()
         self._login(username, password)
-        self._load_tracks()
+        self._load_track()
 
     def _register_session_events(self):
         self._session.on(spotify.SessionEvent.LOGGED_IN, self._on_logged_in)
@@ -41,32 +40,23 @@ class Jukebox(object):
     def _on_end_of_track(self, session):
         self._end_of_track.set()
 
-    def _load_tracks(self):
-        # first time both are empty
-        if self._current_track == None and self._next_track == None:
+    def _load_track(self):
+        if self._current_track == None:
             spotify_uri = utils.get_song_uri()
             if spotify_uri:
                 self._current_track = self._session.get_track(spotify_uri)
                 self._current_track.load()
-            spotify_uri = utils.get_song_uri()
-            if spotify_uri:
-                self._next_track = self._session.get_track(spotify_uri)
-                self._next_track.load()
-        if self._current_track == None:
-            self._current_track = self._next_track
-            self._next_track = None
-            spotify_uri = utils.get_song_uri()
-            if spotify_uri:
-                self._next_track = self._session.get_track(spotify_uri)
-                self._next_track.load()
+
+    def _play_track(self):
+        self._session.player.load(self._current_track)
+        self._session.player.play()
+        self._current_track = None
 
     def on(self):
         while True:
             if self._current_track != None:
-                self._session.player.load(self._current_track)
-                self._session.player.play()
-                self._current_track = None
-                self._load_tracks()
+                self._play_track()
+                self._load_track()
                 while not self._end_of_track.wait(0.1):
                     pass
 
