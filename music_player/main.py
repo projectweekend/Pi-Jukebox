@@ -38,7 +38,7 @@ class Jukebox(object):
         assert error_type == spotify.ErrorType.OK, 'Login failed'
         self._logged_in.set()
 
-    def _on_end_of_track(self):
+    def _on_end_of_track(self, session):
         self._end_of_track.set()
 
     def _load_tracks(self):
@@ -66,9 +66,9 @@ class Jukebox(object):
                 self._session.player.load(self._current_track)
                 self._session.player.play()
                 self._current_track = None
+                self._load_tracks()
                 while not self._end_of_track.wait(0.1):
                     pass
-                self._load_tracks()
 
 
 if __name__ == '__main__':
