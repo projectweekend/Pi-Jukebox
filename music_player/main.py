@@ -12,7 +12,7 @@ PASSWORD = os.getenv('SPOTIFY_PASSWORD')
 
 class JukeBox(object):
 
-    def __init__(self, session, username, password):
+    def __init__(self, username, password):
         self._session = spotify.Session()
         self._loop = spotify.EventLoop(self._session)
         self._loop.start()
