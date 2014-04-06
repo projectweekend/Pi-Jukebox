@@ -39,6 +39,7 @@ class Jukebox(object):
 
     def _on_end_of_track(self, session):
         self._end_of_track.set()
+        session.player.play(play=False)
 
     def _load_next_track(self):
         if self._current_track == None:
@@ -58,9 +59,9 @@ class Jukebox(object):
         while True:
             if self._current_track != None:
                 self._play_current_track()
-                self._load_next_track()
                 while not self._end_of_track.wait(0.1):
                     pass
+                self._load_next_track()
 
 
 if __name__ == '__main__':
