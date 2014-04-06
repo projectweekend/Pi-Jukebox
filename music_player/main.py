@@ -22,7 +22,6 @@ class Jukebox(object):
         self._logged_in = threading.Event()
         self._register_session_events()
         self._login(username, password)
-        self._load_next_track()
 
     def _register_session_events(self):
         self._session.on(spotify.SessionEvent.LOGGED_IN, self._on_logged_in)
@@ -39,7 +38,6 @@ class Jukebox(object):
 
     def _on_end_of_track(self, session):
         self._end_of_track.set()
-        session.player.play(play=False)
 
     def _load_next_track(self):
         spotify_uri = utils.get_song_uri()
