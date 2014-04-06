@@ -12,7 +12,7 @@ DELETE FROM jukebox_song_queue WHERE spotify_uri=?
 
 def get_song():
     output = ''
-    connection = sqlite3.connect('jukebox.db')
+    connection = sqlite3.connect('../jukebox.db')
     cursor = connection.cursor()
     cursor.execute(SELECT_QUERY)
     result = cursor.fetchone()
