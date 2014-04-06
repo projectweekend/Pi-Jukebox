@@ -52,7 +52,7 @@ class Jukebox(object):
             if spotify_uri:
                 self._next_track = self._session.get_track(spotify_uri)
                 self._next_track.load()
-        if self._current_track == None and self._next_track != None:
+        if self._current_track == None:
             self._current_track = self._next_track
             self._next_track = None
             spotify_uri = utils.get_song_uri()
