@@ -13,7 +13,7 @@ PASSWORD = os.getenv('SPOTIFY_PASSWORD')
 class JukeBox(object):
 
     def __init__(self, session, username, password):
-        self._session = session
+        self._session = spotify.Session()
         self._loop = spotify.EventLoop(self._session)
         self._loop.start()
         self._audio = spotify.AlsaSink(self._session)
@@ -73,8 +73,7 @@ class JukeBox(object):
 
 if __name__ == '__main__':
 
-    session = spotify.Session()
-    jukebox = JukeBox(session, USERNAME, PASSWORD)
+    jukebox = JukeBox(USERNAME, PASSWORD)
     try:
         jukebox.on()
     # ctrl + c to exit
