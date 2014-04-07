@@ -1,0 +1,9 @@
+web:
+    build: .
+    command: node app.js
+    volumes:
+        - .:/webapp_root
+    ports:
+        - 3000:3000
+    environment:
+        PORT: 3000
