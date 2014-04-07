@@ -39,25 +39,23 @@ class Jukebox(object):
     def _on_end_of_track(self, session):
         self._end_of_track.set()
 
-    def _load_next_track(self):
-        spotify_uri = utils.get_song_uri()
-        print("URI: {0}".format(spotify_uri))
-        if spotify_uri:
-            self._current_track = self._session.get_track(spotify_uri)
-            self._current_track.load()
-            print("Track: {0}".format(self._current_track.name))
-        else:
-            self._current_track = None
-
     def on(self):
         while True:
-            if self._current_track != None:
+            self._end_of_track.clear()
+            if self._current_track:
                 self._session.player.load(self._current_track)
                 self._session.player.play()
                 while not self._end_of_track.wait(0.1):
                     pass
-            self._end_of_track.clear()
-            self._load_next_track()
+            else:
+                spotify_uri = utils.get_song_uri()
+                if spotify_uri:
+                    self._current_track = self._session.get_track(spotify_uri)
+                    self._current_track.load()
+                    print("URI: {0}".format(spotify_uri))
+                    print("Track: {0}".format(self._current_track.name))
+                else:
+                    self._current_track = None
 
 
 if __name__ == '__main__':
