@@ -4,7 +4,8 @@ import sqlite3
 CREATE_SONG_QUEUE = '''
 CREATE TABLE IF NOT EXISTS 
 jukebox_song_queue (
-    spotify_uri TEXT
+    spotify_uri TEXT,
+    has_played INTEGER DEFAULT 0
 );
 '''
 

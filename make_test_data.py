@@ -2,7 +2,7 @@ import sqlite3
 
 
 INSERT_SONG = '''
-INSERT INTO jukebox_song_queue VALUES (?)
+INSERT INTO jukebox_song_queue VALUES (?, 0)
 '''
 
 TEST_URIS = [
