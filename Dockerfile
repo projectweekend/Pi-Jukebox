@@ -3,9 +3,9 @@ FROM dockerfile/nodejs
 RUN apt-get install -y python-dev
 RUN apt-get install -y python-pip
 
-RUN mkdir /webapp_root
-ADD . /webapp_root/
-WORKDIR /webapp_root
+RUN mkdir /project_root
+ADD . /project_root/
+WORKDIR /project_root/web_app
 RUN npm install
 
 EXPOSE 3000
