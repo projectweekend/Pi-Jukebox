@@ -38,6 +38,7 @@ class Jukebox(object):
 
     def _on_end_of_track(self, session):
         self._end_of_track.set()
+        self._session.player.play(False)
 
     def on(self):
         while True:
