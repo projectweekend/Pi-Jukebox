@@ -60,3 +60,6 @@ jukebox.db
 
 # Node stuff
 node_modules/
+
+# Vagrant stuff
+.vagrant
