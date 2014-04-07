@@ -7,7 +7,8 @@ var express = require('express'),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
-  path = require('path');
+  path = require('path'),
+  sqlite3 = require('sqlite3');
 
 var app = module.exports = express();
 var server = require('http').createServer(app);
@@ -26,6 +27,8 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+
+var db = new sqlite3.Database( '../jukebox.db' );
 
 
 // development only
