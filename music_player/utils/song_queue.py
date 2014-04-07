@@ -2,23 +2,27 @@ import sqlite3
 
 
 SELECT_QUERY = '''
-SELECT spotify_uri FROM jukebox_song_queue ORDER BY ROWID ASC LIMIT 1
+SELECT ROWID, spotify_uri FROM jukebox_song_queue WHERE has_played <> 1 ORDER BY ROWID ASC LIMIT 1
 '''
 
-DELETE_QUERY = '''
-DELETE FROM jukebox_song_queue WHERE spotify_uri=?
+UPDATE_QUERY = '''
+UPDATE jukebox_song_queue SET has_played = 1 WHERE ROWID=? and spotify_uri=?
 '''
+
+
+def select_song_uri(cursor):
+    cursor.execute(SELECT_QUERY)
+    return cursor.fetchone()
 
 
 def get_song_uri():
     output = ''
     connection = sqlite3.connect('../jukebox.db')
     cursor = connection.cursor()
-    cursor.execute(SELECT_QUERY)
-    result = cursor.fetchone()
+    result = select_song_uri(cursor)
     if result:
-        cursor.execute(DELETE_QUERY, result)
-        output = result[0]
+        cursor.execute(UPDATE_QUERY, result)
+        output = result[1]
         connection.commit()
     connection.close()
     return output
