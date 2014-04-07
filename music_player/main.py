@@ -43,19 +43,14 @@ class Jukebox(object):
     def on(self):
         while True:
             self._end_of_track.clear()
-            if self._current_track:
-                self._session.player.load(self._current_track)
+            spotify_uri = utils.get_song_uri()
+            if spotify_uri:
+                track = self._session.get_track(spotify_uri)
+                track.load()
+                self._session.player.load(track)
                 self._session.player.play()
                 while not self._end_of_track.wait(0.1):
                     pass
-                self._current_track = None
-            else:
-                spotify_uri = utils.get_song_uri()
-                if spotify_uri:
-                    self._current_track = self._session.get_track(spotify_uri)
-                    self._current_track.load()
-                else:
-                    self._current_track = None
 
 
 if __name__ == '__main__':
