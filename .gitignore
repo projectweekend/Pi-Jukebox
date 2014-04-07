@@ -57,3 +57,6 @@ spotify_appkey.key
 
 # Jukebox Sqlite Database
 jukebox.db
+
+# Node stuff
+node_modules/
