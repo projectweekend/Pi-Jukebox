@@ -48,6 +48,7 @@ class Jukebox(object):
                 self._session.player.play()
                 while not self._end_of_track.wait(0.1):
                     pass
+                self._current_track = None
             else:
                 spotify_uri = utils.get_song_uri()
                 if spotify_uri:
