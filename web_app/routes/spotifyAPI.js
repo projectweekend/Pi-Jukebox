@@ -12,7 +12,8 @@ exports.trackSearch = function ( req, res ) {
     var q = req.query.q;
     var page = req.query.page;
 
-    SpotifySearch.track( q, page, function ( err, data ) {
+    var search = SpotifySearch();
+    search.track( q, page, function ( err, data ) {
         if ( err ) {
             return errorHandler( err, res );
         }
