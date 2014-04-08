@@ -1,4 +1,4 @@
-var SpotifySearch = require( 'spotify-search' );
+var SpotifySearch = require( 'spotify-metadata-search' );
 
 
 var errorHandler = function ( err, res ) {
