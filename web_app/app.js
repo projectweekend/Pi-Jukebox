@@ -53,7 +53,7 @@ app.get('/partials/:name', routes.partials);
 
 // JSON API
 app.get('/api/name', api.name);
-app.get('/search/spotify/track', spotifyAPI.trackSearch);
+app.get('/api/search/spotify/track', spotifyAPI.trackSearch);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

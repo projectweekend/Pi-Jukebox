@@ -10,8 +10,8 @@ var errorHandler = function ( err, res ) {
 exports.trackSearch = function ( req, res ) {
 
     var apiOptions = {
-        hostname: "http://ws.spotify.com",
-        path: "/search/1/track.json?q=" + req.body.search
+        hostname: "ws.spotify.com",
+        path: "/search/1/track.json?q=" + req.query.q
     };
 
     var output = "";
