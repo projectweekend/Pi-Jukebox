@@ -8,7 +8,8 @@ var express = require('express'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path'),
-  sqlite3 = require('sqlite3');
+  sqlite3 = require('sqlite3'),
+  spotifyAPI = require('./routes/spotifyAPI');
 
 var app = module.exports = express();
 var server = require('http').createServer(app);
@@ -52,6 +53,7 @@ app.get('/partials/:name', routes.partials);
 
 // JSON API
 app.get('/api/name', api.name);
+app.get('/search/spotify/track', spotifyAPI.trackSearch);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
