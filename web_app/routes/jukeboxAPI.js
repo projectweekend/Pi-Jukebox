@@ -47,7 +47,7 @@ exports.addTrackToQueue = function ( req, res ) {
             if ( err ) {
                 return errorHandler( err, res );
             }
-            return res.json( { track_added: trackInfo.$uri } );
+            return res.json( 201, { track_added: trackInfo.$uri } );
         } );
 
     } );
