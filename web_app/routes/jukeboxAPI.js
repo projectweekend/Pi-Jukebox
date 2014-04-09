@@ -38,8 +38,8 @@ exports.addTrackToQueue = function ( req, res ) {
             $name: data.track.name,
             $artist_name: data.track.artists[0].name,
             $artist_uri: data.track.artists[0].href,
-            $album_name: data.album.name,
-            $album_uri: data.album.href
+            $album_name: data.track.album.name,
+            $album_uri: data.track.album.href
         };
 
         var sql = "INSERT INTO jukebox_song_queue VALUES ($uri, 0, $name, $artist_name, $artist_uri, $album_name, $album_uri)";
