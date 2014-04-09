@@ -9,7 +9,7 @@ var errorHandler = function ( err, res ) {
 
 exports.addTrackToQueue = function ( req, res ) {
 
-    var db = new sqlite3.Database( '../jukebox.db' );
+    var db = new sqlite3.Database( '../../jukebox.db' );
 
     var uri = req.body.uri;
 
