@@ -28,8 +28,8 @@ exports.getTrackQueue = function ( req, res ) {
 
 exports.addTrackToQueue = function ( req, res ) {
 
-    var spotify = SpotifySearch();
-    spotify.lookup( req.body.uri, null, function ( err, data ) {
+    var search = SpotifySearch();
+    search.lookup( req.body.uri, null, function ( err, data ) {
         if ( err ) {
             return errorHandler( err, res );
         }
