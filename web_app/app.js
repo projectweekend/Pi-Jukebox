@@ -57,7 +57,8 @@ app.get('/api/name', api.name);
 app.get('/api/search/spotify/track', spotifyAPI.trackSearch);
 app.get('/api/search/spotify/album', spotifyAPI.albumSearch);
 app.get('/api/search/spotify/artist', spotifyAPI.artistSearch);
-app.post('/api/jukebox/add', jukeboxAPI.addTrackToQueue);
+app.get('/api/jukebox', jukeboxAPI.getTrackQueue);
+app.post('/api/jukebox', jukeboxAPI.addTrackToQueue);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
