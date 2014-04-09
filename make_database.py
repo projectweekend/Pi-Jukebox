@@ -9,10 +9,8 @@ jukebox_song_queue (
     name TEXT,
     artist_name TEXT,
     artist_uri TEXT,
-    artist_image TEXT,
     album_name TEXT,
-    album_uri TEXT,
-    album_image TEXT
+    album_uri TEXT
 );
 '''
 

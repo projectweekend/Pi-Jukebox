@@ -1,4 +1,5 @@
-var sqlite3 = require('sqlite3');
+var sqlite3 = require('sqlite3'),
+    SpotifySearch = require( 'spotify-metadata-search' );
 
 
 var errorHandler = function ( err, res ) {
@@ -27,12 +28,28 @@ exports.getTrackQueue = function ( req, res ) {
 
 exports.addTrackToQueue = function ( req, res ) {
 
-    var sql = "INSERT INTO jukebox_song_queue VALUES (?, 0)";
-    db.run( sql, [ req.body.uri ], function ( err ) {
+    var spotify = SpotifySearch();
+    spotify.lookup( req.body.uri, null, function ( err, data ) {
         if ( err ) {
             return errorHandler( err, res );
         }
-        return res.json( { track_added: uri } );
+        var trackInfo = {
+            $uri: data.track.href,
+            $name: data.track.name,
+            $artist_name: data.track.artists[0].name,
+            $artist_uri: data.track.artists[0].href,
+            $album_name: data.album.name,
+            $album_uri: data.album.href
+        };
+
+        var sql = "INSERT INTO jukebox_song_queue VALUES ($uri, 0, $name, $artist_name, $artist_uri, $album_name, $album_uri)";
+        db.run( sql, trackInfo, function ( err ) {
+            if ( err ) {
+                return errorHandler( err, res );
+            }
+            return res.json( { track_added: trackInfo.$uri } );
+        } );
+
     } );
 
 };
