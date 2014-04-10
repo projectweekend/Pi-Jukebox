@@ -1,6 +1,5 @@
 var sqlite3 = require('sqlite3'),
-    SpotifySearch = require( 'spotify-metadata-search' ),
-    ActivitySockets = require( '../routes/jukeboxSocket' );
+    SpotifySearch = require( 'spotify-metadata-search' );
 
 
 var errorHandler = function ( err, res ) {
@@ -27,30 +26,32 @@ exports.getTrackQueue = function ( req, res ) {
 };
 
 
-exports.addTrackToQueue = function ( req, res ) {
+exports.addTrackToQueue = function ( io ) {
 
-    var search = SpotifySearch();
-    search.lookup( req.body.uri, null, function ( err, data ) {
-        if ( err ) {
-            return errorHandler( err, res );
-        }
-        var trackInfo = {
-            $uri: data.track.href,
-            $name: data.track.name,
-            $artist_name: data.track.artists[0].name,
-            $artist_uri: data.track.artists[0].href,
-            $album_name: data.track.album.name,
-            $album_uri: data.track.album.href
-        };
-
-        var sql = "INSERT INTO jukebox_song_queue VALUES ($uri, 0, $name, $artist_name, $artist_uri, $album_name, $album_uri)";
-        db.run( sql, trackInfo, function ( err ) {
+    return function ( req, res ) {
+        var search = SpotifySearch();
+        search.lookup( req.body.uri, null, function ( err, data ) {
             if ( err ) {
                 return errorHandler( err, res );
             }
-            return res.json( 201, { track_added: trackInfo.$uri } );
-        } );
+            var trackInfo = {
+                $uri: data.track.href,
+                $name: data.track.name,
+                $artist_name: data.track.artists[0].name,
+                $artist_uri: data.track.artists[0].href,
+                $album_name: data.track.album.name,
+                $album_uri: data.track.album.href
+            };
 
-    } );
+            var sql = "INSERT INTO jukebox_song_queue VALUES ($uri, 0, $name, $artist_name, $artist_uri, $album_name, $album_uri)";
+            db.run( sql, trackInfo, function ( err ) {
+                if ( err ) {
+                    return errorHandler( err, res );
+                }
+                return res.json( 201, { track_added: trackInfo.$uri } );
+            } );
+
+        } );
+    };
 
 };

@@ -58,14 +58,13 @@ app.get('/api/search/spotify/track', spotifyAPI.trackSearch);
 app.get('/api/search/spotify/album', spotifyAPI.albumSearch);
 app.get('/api/search/spotify/artist', spotifyAPI.artistSearch);
 app.get('/api/jukebox', jukeboxAPI.getTrackQueue);
-app.post('/api/jukebox', jukeboxAPI.addTrackToQueue);
+app.post('/api/jukebox', jukeboxAPI.addTrackToQueue(io));
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
 
 // Socket.io Communication
 io.sockets.on('connection', require('./routes/socket'));
-io.sockets.on('connection', require('./routes/jukeboxSocket'));
 
 /**
  * Start Server
