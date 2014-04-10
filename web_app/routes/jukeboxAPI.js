@@ -42,12 +42,12 @@ exports.addTrackToQueue = function ( io ) {
                 $album_name: data.track.album.name,
                 $album_uri: data.track.album.href
             };
-
             var sql = "INSERT INTO jukebox_song_queue VALUES ($uri, 0, $name, $artist_name, $artist_uri, $album_name, $album_uri)";
             db.run( sql, trackInfo, function ( err ) {
                 if ( err ) {
                     return errorHandler( err, res );
                 }
+                io.sockets.emit( 'track:added', trackInfo );
                 return res.json( 201, { track_added: trackInfo.$uri } );
             } );
 
