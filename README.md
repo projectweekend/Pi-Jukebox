@@ -7,14 +7,14 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Track Search
 
-**GET: ** `/api/search/spotify/track`
+**GET:** `/api/search/spotify/track`
 
-**Parameters: **
+**Parameters:**
 
 * `q`: Search string (required)
 * `page`: The page of the result set to return (optional - defaults to 1)
 
-**Response: **
+**Response:**
 
 ```
 {
@@ -88,14 +88,14 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Album Search
 
-**GET: **  `/api/search/spotify/album`
+**GET:**  `/api/search/spotify/album`
 
-**Parameters: **
+**Parameters:**
 
 * `q`: Search string (required)
 * `page`: The page of the result set to return (optional - defaults to 1) 
 
-**Response: **
+**Response:**
 
 ```
 {
@@ -155,14 +155,14 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Artist Search
 
-**GET: **  `/api/search/spotify/artist`
+**GET:**  `/api/search/spotify/artist`
 
-**Parameters: **
+**Parameters:**
 
 * `q`: Search string (required)
 * `page`: The page of the result set to return (optional - defaults to 1) 
 
-**Response: **
+**Response:**
 
 ```
 {
