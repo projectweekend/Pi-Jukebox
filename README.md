@@ -7,7 +7,7 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Track Search
 
-**GET:** `/api/search/spotify/track`
+**GET:** `/api/search/tracks`
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Album Search
 
-**GET:**  `/api/search/spotify/album`
+**GET:**  `/api/search/albums`
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ A Raspberry Pi jukebox powered by Spotify
 
 ### Spotify Artist Search
 
-**GET:**  `/api/search/spotify/artist`
+**GET:**  `/api/search/artists`
 
 **Parameters:**
 
@@ -181,5 +181,57 @@ A Raspberry Pi jukebox powered by Spotify
             "popularity": "0.58"
         }
     ]
+}
+```
+
+### Jukebox Play Queue
+
+**GET:** `/api/jukebox`
+
+**Parameters:**
+
+* `has_played`: Set this equal to 1 to get tracks that **have been played**. If not used then the results will be tracks that **have not been played**, sorted in the order they will be played. (optional)
+
+**Response:**
+
+```
+[
+    {
+        "spotify_uri": "spotify:track:1lCC3flXDsXQrNPcvDojuI",
+        "has_played": 0,
+        "name": "Vietnow",
+        "artist_name": "Rage Against The Machine",
+        "artist_uri": "spotify:artist:2d0hyoQ5ynDBnkvAbJKORj",
+        "album_name": "Evil Empire",
+        "album_uri": "spotify:album:24E6rDvGDuYFjlGewp4ntF"
+    },
+    {
+        "spotify_uri": "spotify:track:6y1I8cGzw6KWy2zPA572Jq",
+        "has_played": 0,
+        "name": "Lady Picture Show",
+        "artist_name": "Stone Temple Pilots",
+        "artist_uri": "spotify:artist:2UazAtjfzqBF0Nho2awK4z",
+        "album_name": "Tiny Music...Songs From The Vatican Gift Shop",
+        "album_uri": "spotify:album:2JJEIN6LvQJQTJDfnYdDAe"
+    }
+]
+```
+
+### Add To Jukebox Play Queue
+
+**POST:** `/api/jukebox`
+
+**Payload:**
+
+```
+{
+    "uri": "spotify:track:7yX8ayPTlR5kjECfCyS7ZN"
+}
+```
+
+**Response:**
+```
+{
+    "track_added": "spotify:track:7yX8ayPTlR5kjECfCyS7ZN"
 }
 ```

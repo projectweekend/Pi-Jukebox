@@ -53,9 +53,9 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/search/spotify/track', spotifyAPI.trackSearch);
-app.get('/api/search/spotify/album', spotifyAPI.albumSearch);
-app.get('/api/search/spotify/artist', spotifyAPI.artistSearch);
+app.get('/api/search/tracks', spotifyAPI.trackSearch);
+app.get('/api/search/albums', spotifyAPI.albumSearch);
+app.get('/api/search/artists', spotifyAPI.artistSearch);
 app.get('/api/jukebox', jukeboxAPI.getTrackQueue);
 app.post('/api/jukebox', jukeboxAPI.addTrackToQueue(io));
 
