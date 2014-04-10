@@ -235,3 +235,29 @@ A Raspberry Pi jukebox powered by Spotify
     "track_added": "spotify:track:7yX8ayPTlR5kjECfCyS7ZN"
 }
 ```
+
+### Play Queue Updates Socket
+
+**Socket On:** `'track:added'`
+
+**Data:**
+
+```
+{
+    $uri: "spotify:track:6y1I8cGzw6KWy2zPA572Jq",
+    $name: "Lady Picture Show",
+    $artist_name: "Stone Temple Pilots",
+    $artist_uri: "spotify:artist:2UazAtjfzqBF0Nho2awK4z",
+    $album_name: "Tiny Music...Songs From The Vatican Gift Shop",
+    $album_uri: "spotify:album:2JJEIN6LvQJQTJDfnYdDAe"
+}
+```
+
+**AngularJS Controller Example:**
+```
+cModule.controller( 'MyCtrl1', function ( $scope, socket ) {
+    socket.on( 'track:added', function ( data ) {
+        $scope.myPlayQueue.push( data );
+    } );
+} );
+```
