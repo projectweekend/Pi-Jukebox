@@ -53,7 +53,6 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/name', api.name);
 app.get('/api/search/spotify/track', spotifyAPI.trackSearch);
 app.get('/api/search/spotify/album', spotifyAPI.albumSearch);
 app.get('/api/search/spotify/artist', spotifyAPI.artistSearch);
