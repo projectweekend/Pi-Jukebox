@@ -1,5 +1,6 @@
 var sqlite3 = require('sqlite3'),
-    SpotifySearch = require( 'spotify-metadata-search' );
+    SpotifySearch = require( 'spotify-metadata-search' ),
+    ActivitySockets = require( '../routes/jukeboxSocket' );
 
 
 var errorHandler = function ( err, res ) {

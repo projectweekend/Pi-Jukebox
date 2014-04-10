@@ -65,6 +65,7 @@ app.get('*', routes.index);
 
 // Socket.io Communication
 io.sockets.on('connection', require('./routes/socket'));
+io.sockets.on('connection', require('./routes/jukeboxSocket'));
 
 /**
  * Start Server
