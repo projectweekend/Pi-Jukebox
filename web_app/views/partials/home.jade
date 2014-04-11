@@ -1,2 +1,11 @@
-p This is the partial for view 1.
-p The current time is {{time}}
+div(class="row")
+  div(class="col-md-6")
+    div(class="row")
+      div(class="col-md-12")
+        form
+          div(class="form-group")
+            label Search
+            input(ng-model="searchInput", ng-change="spotifySearch()" class="form-control", type="text", placeholder="song, album, or artist name...")
+    div(class="row")
+      div(class="col-md-12")
+  div(class="col-md-6")
