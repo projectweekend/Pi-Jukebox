@@ -2,6 +2,10 @@
 
 /* Services */
 
+var logError = function ( data ) {
+    console.log( data );
+};
+
 var sModule = angular.module( 'myApp.services', [] );
 
 sModule.factory( 'socket', function ( socketFactory ) {
@@ -19,7 +23,7 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
                     self.results = data.tracks;
                 } ).
                 error( function ( data, status ) {
-                    console.log( data );
+                    logError( data );
                 } );
         }
     };
@@ -36,20 +40,38 @@ sModule.factory( 'Jukebox', function ( $http, socket ) {
             };
             $http.post( url, body ).
                 success( function ( data, status ) {
-                    console.log( "track added" );
                 } ).
                 error( function ( data, status ) {
-                    console.log( data );
+                    logError( data );
                 } );
         },
         listenForUpdates: function   () {
             var self = this;
+            socket.on( 'track:added', function ( data ) {
+                self.playQueue.push( data );
+            } );
         },
         loadPlayQueue: function  () {
             var self = this;
+            var url = "/api/jukebox";
+            $http.get( url ).
+                success( function ( data, status ) {
+                    self.playQueue = data;
+                } ).
+                error( function ( data, status ) {
+                    logError( data );
+                } );
         },
         loadPlayHistory: function () {
             var self = this;
+            var url = "/api/jukebox?has_played=1";
+            $http.get( url ).
+                success( function ( data, status ) {
+                    self.playHistory = data;
+                } ).
+                error( function ( data, status ) {
+                    logError( data );
+                } );
         }
     };
 } );
