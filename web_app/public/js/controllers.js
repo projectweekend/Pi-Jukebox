@@ -10,12 +10,14 @@ cModule.controller( 'AppCtrl', function ( $scope, socket ) {
     } );
 } );
 
-cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch ) {
+cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebox ) {
 
     $scope.SpotifySearch = SpotifySearch;
     $scope.search = function () {
         $scope.SpotifySearch.byTrack( $scope.searchInput );
     };
+    $scope.Jukebox = Jukebox;
+    $scope.Jukebox.listenForUpdates();
     
 } );
 
