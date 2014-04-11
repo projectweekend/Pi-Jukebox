@@ -10,10 +10,13 @@ cModule.controller( 'AppCtrl', function ( $scope, socket ) {
     } );
 } );
 
-cModule.controller( 'HomeCtrl', function ( $scope, socket ) {
-    socket.on( 'send:time', function ( data ) {
-        $scope.time = data.time;
-    } );
+cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch ) {
+
+    $scope.SpotifySearch = SpotifySearch;
+    $scope.search = function () {
+        $scope.SpotifySearch.byTrack( $scope.searchInput );
+    };
+    
 } );
 
 cModule.controller( 'MyCtrl2', function ( $scope ) {

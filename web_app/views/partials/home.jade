@@ -5,7 +5,10 @@ div(class="row")
         form
           div(class="form-group")
             label Search
-            input(ng-model="searchInput", ng-change="spotifySearch()" class="form-control", type="text", placeholder="song, album, or artist name...")
+            input(ng-model="searchInput", ng-change="search()" class="form-control", type="text", placeholder="song, album, or artist name...")
     div(class="row")
       div(class="col-md-12")
+        ul(class="list-unstyled")
+          li(ng-repeat="for r in SpotifySearch.results", class="")
+            h5 {{ r.name }}
   div(class="col-md-6")
