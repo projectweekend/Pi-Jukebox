@@ -8,7 +8,6 @@ var express = require('express'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path'),
-  sqlite3 = require('sqlite3'),
   spotifyAPI = require('./routes/spotifyAPI'),
   jukeboxAPI = require('./routes/jukeboxAPI');
 
@@ -29,8 +28,6 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
-
-var db = new sqlite3.Database( '../jukebox.db' );
 
 
 // development only
