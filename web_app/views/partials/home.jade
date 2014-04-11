@@ -4,11 +4,14 @@ div(class="row")
       div(class="col-md-12")
         form
           div(class="form-group")
-            label Search
-            input(ng-model="searchInput", ng-change="search()" class="form-control", type="text", placeholder="song, album, or artist name...")
+            h3 Search
+            input(ng-model="searchInput", ng-change="search()", class="form-control", type="text", placeholder="song, album, or artist name...")
     div(class="row")
       div(class="col-md-12")
         ul(class="list-unstyled")
-          li(ng-repeat="for r in SpotifySearch.results", class="")
-            h5 {{ r.name }}
+          li(ng-repeat="r in SpotifySearch.results", class="search-result")
+            h4 {{ r.name }}
+              small  by {{ r.artists[0].name }}
+            p from {{ r.album.name }} ({{ r.album.released }})
   div(class="col-md-6")
+    h3 Play Queue
