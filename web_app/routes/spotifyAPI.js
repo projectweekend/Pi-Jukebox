@@ -57,7 +57,11 @@ exports.artistSearch = function ( req, res ) {
 exports.uriLookup = function ( req, res ) {
 
     var uri = req.query.uri;
-    var extras = req.query.extras.split( "," );
+    var extras = req.query.extras;
+
+    if ( extras ) {
+        extras = extras.split( "," );
+    }
 
     var search = SpotifySearch();
     search.lookup( uri, extras, function ( err, data ) {
