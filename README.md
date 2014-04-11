@@ -193,6 +193,58 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 }
 ```
 
+### Spotify Lookup
+
+**GET:** `/api/lookup`
+
+**Parameters:**
+
+* `uri`: The Spotify URI to lookup (required)
+* `extras`: A comma-separated list of words to define the expected level of detail. With an **artist** URI, you can pass `album` and `albumdetail`. With an **album** URI, you can pass `track` and `trackdetail`. There are no extras available when looking up a **track** URI.
+
+**Response:**
+
+```
+{
+    track: 
+    {
+        available: true,
+        album: 
+        {
+            released: "1996",
+            href: "spotify:album:24E6rDvGDuYFjlGewp4ntF",
+            name: "Evil Empire"
+        },
+        name: "Vietnow",
+        popularity: "0.52000",
+        external-ids: [
+            {
+                type: "isrc",
+                id: "USSM19502588"
+            }
+        ],
+        length: 277.333,
+        href: "spotify:track:1lCC3flXDsXQrNPcvDojuI",
+        artists: [
+            {
+                href: "spotify:artist:2d0hyoQ5ynDBnkvAbJKORj",
+                name: "Rage Against The Machine"
+            }
+        ],
+        availability: 
+        {
+            territories: "AD AR AT AU BE BG BO BR CA CH CL CO CR CY CZ DE DK DO EC EE ES FI FR GB GR GT HK HN HR HU IE IS IT LI LT LU LV MC MT MX MY NI NL NO NZ PA PE PH PL PT PY RO SE SG SI SK SV TR TW US UY"
+        },
+        track-number: "3"
+    },
+    info: 
+    {
+        type: "track"
+    }
+}
+```
+
+
 ### Jukebox Play Queue
 
 **GET:** `/api/jukebox`
