@@ -29,6 +29,34 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
     };
 } );
 
+sModule.factory( 'SpotifyLookup', function ( $http ) {
+    return {
+        results: {},
+        album: function ( albumURI ) {
+            var self = this;
+            var url = "/api/lookup?uri=" + albumURI + "&extras=trackdetail";
+            $http.get( url ).
+                success( function ( data, status ) {
+                    self.results = data;
+                } ).
+                error( function ( data, status ) {
+                    logError( data );
+                } );
+        },
+        artist: function ( artistURI ) {
+            var self = this;
+            var url = "/api/lookup?uri=" + artistURI + "&extras=albumdetail";
+            $http.get( url ).
+                success( function ( data, status ) {
+                    self.results = data;
+                } ).
+                error( function ( data, status ) {
+                    logError( data );
+                } );
+        }
+    };
+} );
+
 sModule.factory( 'Jukebox', function ( $http, socket ) {
     return {
         playQueue: [],
