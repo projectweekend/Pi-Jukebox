@@ -13,9 +13,18 @@ cModule.controller( 'AppCtrl', function ( $scope, socket ) {
 cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebox ) {
 
     $scope.SpotifySearch = SpotifySearch;
-    $scope.search = function () {
-        $scope.SpotifySearch.byTrack( $scope.searchInput );
-    };
+
+    $scope.$watch( 'searchInput', function ( val ) {
+        if ( !val || val.length === 0 ) {
+            return 0;
+        }
+        setTimeout( function () {
+            if ( val === $scope.searchInput ) {
+                $scope.SpotifySearch.byTrack( $scope.searchInput );
+            }
+        }, 1000 );
+    } );
+
     $scope.Jukebox = Jukebox;
     $scope.Jukebox.listenForUpdates();
     
