@@ -8,7 +8,4 @@ div(class="row")
         h4(class="album") 
           a(ng-href="/album/{{ a.album.href }}") {{ a.album.name }}
         p(class="artist") Artist: {{ a.album.artist }}
-        p(class="album") Album: {{ SpotifyLookup.results.name }}
-        p(class="year") Year: {{ SpotifyLookup.results.released }}
-        div(class="buttons btn-toolbar")
-          a(ng-click="Jukebox.play(t.href)", class="btn btn-small btn-success") add to queue
+        p(class="year") Year: {{ a.album.released }}
