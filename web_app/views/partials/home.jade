@@ -14,9 +14,6 @@ div(class="row")
           a(ng-href="/artist/{{ r.artists[0].href }}") {{ r.artists[0].name }}
         p(class="album") Album: 
           a(ng-href="/album/{{ r.album.href }}") {{ r.album.name }}
-        p(class="year") Year: 
-          a(ng-href="/year/{{ r.album.released }}") {{ r.album.released }}
+        p(class="year") Year: {{ r.album.released }}
         div(class="buttons btn-toolbar")
-          a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success")
-            span(class="glyphicon glyphicon-plus") 
-            |  add to queue
+          a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success") add to queue
