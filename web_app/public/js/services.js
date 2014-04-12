@@ -55,6 +55,13 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
             $http.get( url ).
                 success( function ( data, status ) {
                     self.results = data.artist;
+                    self.results.albumsUS = [];
+                    data.artist.albums.forEach( function ( element, index, array ) {
+                        var territories = element.availability.territories;
+                        if ( territories.indexOf( 'US' ) != -1 ) {
+                            self.results.albumsUS.push( element );
+                        }
+                    } );
                 } ).
                 error( function ( data, status ) {
                     logError( data );
