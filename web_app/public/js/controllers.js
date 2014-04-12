@@ -30,14 +30,20 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
     
 } );
 
-cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifySearch ) {
+cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifyLookup ) {
 
     $scope.artistURI = $routeParams.artistURI;
+
+    $scope.SpotifyLookup = SpotifyLookup;
+    $scope.SpotifyLookup.artist( $scope.artistURI );
     
 });
 
-cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifySearch ) {
+cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifyLookup ) {
     
     $scope.albumURI = $routeParams.albumURI;
+    
+    $scope.SpotifyLookup = SpotifyLookup;
+    $scope.SpotifyLookup.album( $scope.albumURI );
 
 });
