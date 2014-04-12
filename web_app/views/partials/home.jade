@@ -13,4 +13,6 @@ div(class="row")
           small  by {{ r.artists[0].name }}        
         p from {{ r.album.name }} ({{ r.album.released }})
         div(class="btn-toolbar")
-          a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success pull-right") Play
+          a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success")
+            span(class="glyphicon glyphicon-plus") 
+            |  add to queue
