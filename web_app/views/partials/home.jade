@@ -1,19 +1,16 @@
 div(class="row")
-  div(class="col-md-6")
-    div(class="row")
-      div(class="col-md-12")
-        form
-          div(class="form-group")
-            h3 Search
-            input(ng-model="searchInput", ng-change="search()", class="form-control", type="text", placeholder="song, album, or artist name...")
-    div(class="row")
-      div(class="col-md-12")
-        ul(class="list-unstyled")
-          li(ng-repeat="r in SpotifySearch.results", class="search-result")
-            h4 {{ r.name }}
-              small  by {{ r.artists[0].name }}
-            p from {{ r.album.name }} ({{ r.album.released }})
-            div(class="btn-toolbar")
-              a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-primary") Play
-  div(class="col-md-6")
-    h3 Play Queue
+  div(class="col-md-10 col-md-offset-1")
+    form
+      div(class="form-group")
+        h3 Search
+        input(ng-model="searchInput", class="form-control", type="text", placeholder="song, album, or artist name...")
+
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
+    ul(class="list-unstyled")
+      li(ng-repeat="r in SpotifySearch.results", class="search-result")
+        h4 {{ r.name }}
+          small  by {{ r.artists[0].name }}
+        p from {{ r.album.name }} ({{ r.album.released }})
+        div(class="btn-toolbar")
+          a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-primary") Play
