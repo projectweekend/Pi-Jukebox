@@ -29,22 +29,19 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
     
 } );
 
-cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifyLookup ) {
-
-    $scope.artistURI = $routeParams.artistURI;
+cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifyLookup, Jukebox ) {
 
     $scope.SpotifyLookup = SpotifyLookup;
-    $scope.SpotifyLookup.artist( $scope.artistURI );
+    $scope.SpotifyLookup.artist( $routeParams.artistURI );
+
+    $scope.Jukebox = Jukebox;
     
 });
 
 cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifyLookup, Jukebox ) {
     
-    $scope.albumURI = $routeParams.albumURI;
-    
     $scope.SpotifyLookup = SpotifyLookup;
-    $scope.SpotifyLookup.album( $scope.albumURI );
-    console.log( $scope.SpotifyLookup );
+    $scope.SpotifyLookup.album( $routeParams.albumURI );
 
     $scope.Jukebox = Jukebox;
 

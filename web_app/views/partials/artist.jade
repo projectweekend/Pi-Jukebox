@@ -1,0 +1,14 @@
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
+
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
+    div(class="row")
+      div(ng-repeat="a in SpotifyLookup.results.albums", class="col-md-6 search-result")
+        h4(class="album") 
+          a(ng-href="/album/{{ a.album.href }}") {{ a.album.name }}
+        p(class="artist") Artist: {{ a.album.artist }}
+        p(class="album") Album: {{ SpotifyLookup.results.name }}
+        p(class="year") Year: {{ SpotifyLookup.results.released }}
+        div(class="buttons btn-toolbar")
+          a(ng-click="Jukebox.play(t.href)", class="btn btn-small btn-success") add to queue
