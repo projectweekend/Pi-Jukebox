@@ -7,10 +7,10 @@ div(class="row")
 
 div(class="row")
   div(class="col-md-10 col-md-offset-1")
-    ul(class="list-unstyled")
-      li(ng-repeat="r in SpotifySearch.results", class="search-result")
+    div(class="row")
+      div(ng-repeat="r in SpotifySearch.results", class="col-md-6 search-result")
         h4 {{ r.name }}
-          small  by {{ r.artists[0].name }}
+          small  by {{ r.artists[0].name }}        
         p from {{ r.album.name }} ({{ r.album.released }})
         div(class="btn-toolbar")
           a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success pull-right") Play
