@@ -22,7 +22,7 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
             if ( val === $scope.searchInput ) {
                 $scope.SpotifySearch.byTrack( $scope.searchInput );
             }
-        }, 1000 );
+        }, 750 );
     } );
 
     $scope.Jukebox = Jukebox;
