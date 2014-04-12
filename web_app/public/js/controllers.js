@@ -30,6 +30,14 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
     
 } );
 
-cModule.controller( 'MyCtrl2', function ( $scope ) {
-    // write Ctrl here
+cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams ) {
+
+    $scope.artistURI = $routeParams.artistURI;
+    
+});
+
+cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams ) {
+    
+    $scope.albumURI = $routeParams.albumURI;
+
 });

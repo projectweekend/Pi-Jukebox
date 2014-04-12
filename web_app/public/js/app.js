@@ -20,6 +20,14 @@ app.config( function ( $routeProvider, $locationProvider ) {
         templateUrl: 'partials/home',
         controller: 'HomeCtrl'
     } ).
+    when( '/artist/:artistURI', {
+        templateUrl: 'partials/artist',
+        controller: 'ArtistCtrl'
+    } ).
+    when( '/album/:albumURI', {
+        templateUrl: 'partials/album',
+        controller: 'AlbumCtrl'
+    } ).
     otherwise( {
         redirectTo: '/home'
     } );
