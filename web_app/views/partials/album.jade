@@ -1,0 +1,7 @@
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
+    ul(class="list-unstyled")
+      li(ng-repeat="t in SpotifyLookup.results.tracks")
+        h5 {{ t.name }}
+        div(class="buttons btn-toolbar")
+          a(ng-click="Jukebox.play(t.href)", class="btn btn-small btn-success") add to queue

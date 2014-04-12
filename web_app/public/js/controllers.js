@@ -26,7 +26,6 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
     } );
 
     $scope.Jukebox = Jukebox;
-    $scope.Jukebox.listenForUpdates();
     
 } );
 
@@ -39,11 +38,14 @@ cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifyLookup
     
 });
 
-cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifyLookup ) {
+cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifyLookup, Jukebox ) {
     
     $scope.albumURI = $routeParams.albumURI;
     
     $scope.SpotifyLookup = SpotifyLookup;
     $scope.SpotifyLookup.album( $scope.albumURI );
+    console.log( $scope.SpotifyLookup );
+
+    $scope.Jukebox = Jukebox;
 
 });
