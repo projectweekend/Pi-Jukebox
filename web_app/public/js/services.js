@@ -20,7 +20,13 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
             var url = '/api/search/tracks?q=' + searchText;
             $http.get( url ).
                 success( function ( data, status ) {
-                    self.results = data.tracks;
+                    self.results = [];
+                    data.tracks.forEach( function ( element, index, array ) {
+                        var territories = element.album.availability.territories;
+                        if ( territories.indexOf( 'US' ) != -1 ) {
+                            self.results.push( element );
+                        }
+                    } );
                 } ).
                 error( function ( data, status ) {
                     logError( data );
