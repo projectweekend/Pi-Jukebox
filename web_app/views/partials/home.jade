@@ -9,9 +9,12 @@ div(class="row")
   div(class="col-md-10 col-md-offset-1")
     div(class="row")
       div(ng-repeat="r in SpotifySearch.results", class="col-md-6 search-result")
-        h4 {{ r.name }}
-          small  by {{ r.artists[0].name }}        
-        p from {{ r.album.name }} ({{ r.album.released }})
+        h5(class="track") {{ r.name }}
+        p(class="artist")
+          a(ng-href="/artist/{{ r.artists[0].href }}") {{ r.artists[0].name }}
+        p(class="album") 
+          a(ng-href="/album/{{ r.album.href }}") {{ r.album.name }}
+        p(class="year") {{ r.album.released }}
         div(class="btn-toolbar")
           a(ng-click="Jukebox.play(r.href)", class="btn btn-small btn-success")
             span(class="glyphicon glyphicon-plus") 

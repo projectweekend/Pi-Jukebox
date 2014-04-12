@@ -30,13 +30,13 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
     
 } );
 
-cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams ) {
+cModule.controller( 'ArtistCtrl', function ( $scope, $routeParams, SpotifySearch ) {
 
     $scope.artistURI = $routeParams.artistURI;
     
 });
 
-cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams ) {
+cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifySearch ) {
     
     $scope.albumURI = $routeParams.albumURI;
 
