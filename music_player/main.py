@@ -18,6 +18,7 @@ class Jukebox(object):
         self._loop.start()
         self._audio = spotify.AlsaSink(self._session)
         self._current_track = None
+        self._next_track = None
         self._end_of_track = threading.Event()
         self._logged_in = threading.Event()
         self._register_session_events()
@@ -40,14 +41,34 @@ class Jukebox(object):
         self._end_of_track.set()
         self._session.player.play(False)
 
+    def _load_from_queue(self, track):
+        spotify_uri = utils.get_song_uri()
+        if spotify_uri:
+            track = self._session.get_track(spotify_uri)
+            track.load()
+            self._session.player.prefetch(track)
+        else:
+            track = None
+
+    def _load_current_track(self):
+        # if next track exists move it into current slot
+        if self._next_track != None:
+            self._current_track = self._next_track
+            self._next_track = None
+        # else grab new URI from database
+        else:
+            self._load_from_queue(self._current_track)
+
+    def _prep_next_track(self):
+        self._load_from_queue(self._next_track)
+
     def on(self):
         while True:
             self._end_of_track.clear()
-            spotify_uri = utils.get_song_uri()
-            if spotify_uri:
-                track = self._session.get_track(spotify_uri)
-                track.load()
-                self._session.player.load(track)
+            self._load_current_track()
+            self._prep_next_track()
+            if self._current_track:
+                self._session.player.load(self._current_track)
                 self._session.player.play()
                 while not self._end_of_track.wait(0.1):
                     pass
