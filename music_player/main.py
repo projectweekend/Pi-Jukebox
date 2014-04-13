@@ -17,8 +17,6 @@ class Jukebox(object):
         self._loop = spotify.EventLoop(self._session)
         self._loop.start()
         self._audio = spotify.AlsaSink(self._session)
-        self._current_track = None
-        self._next_track = None
         self._end_of_track = threading.Event()
         self._logged_in = threading.Event()
         self._register_session_events()
@@ -40,9 +38,6 @@ class Jukebox(object):
     def _on_end_of_track(self, session):
         self._end_of_track.set()
         self._session.player.play(False)
-
-    def _prep_next_track(self):
-        self._load_from_queue(self._next_track)
 
     def on(self):
         while True:
