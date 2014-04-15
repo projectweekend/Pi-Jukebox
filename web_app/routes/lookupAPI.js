@@ -39,7 +39,7 @@ exports.byURI = function ( req, res ) {
 
         // Get more interesting data from other services
         var tasks = {
-            lastFmArtistInfo: function ( callback ) {
+            lastFmArtist: function ( callback ) {
                 var params = {
                     artist: data.artist.name
                 };
@@ -52,7 +52,7 @@ exports.byURI = function ( req, res ) {
             }
         };
         async.parallel( tasks, function ( err, results ) {
-            output.artist.image = results.lastFmArtistInfo.image[2]['#text'];
+            output.artist.image = results.lastFmArtist.image[2]['#text'];
             if ( err ) {
                 return errorHandler( err, res );
             }
