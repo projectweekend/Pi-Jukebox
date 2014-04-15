@@ -9,6 +9,7 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   spotifyAPI = require('./routes/spotifyAPI'),
+  lookupAPI = require('./routes/lookupAPI'),
   jukeboxAPI = require('./routes/jukeboxAPI');
 
 var app = module.exports = express();
@@ -53,7 +54,7 @@ app.get('/partials/:name', routes.partials);
 app.get('/api/search/tracks', spotifyAPI.trackSearch);
 app.get('/api/search/albums', spotifyAPI.albumSearch);
 app.get('/api/search/artists', spotifyAPI.artistSearch);
-app.get('/api/lookup', spotifyAPI.uriLookup);
+app.get('/api/lookup', lookupAPI.byURI);
 app.get('/api/jukebox', jukeboxAPI.getTrackQueue);
 app.post('/api/jukebox', jukeboxAPI.addTrackToQueue(io));
 

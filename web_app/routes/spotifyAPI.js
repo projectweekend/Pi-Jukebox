@@ -1,4 +1,5 @@
-var SpotifySearch = require( 'spotify-metadata-search' );
+var SpotifySearch = require( 'spotify-metadata-search' ),
+    LastfmAPI = require('lastfmapi');
 
 
 var errorHandler = function ( err, res ) {
@@ -38,7 +39,6 @@ exports.albumSearch = function ( req, res ) {
 
 };
 
-
 exports.artistSearch = function ( req, res ) {
 
     var q = req.query.q;
@@ -46,25 +46,6 @@ exports.artistSearch = function ( req, res ) {
 
     var search = SpotifySearch();
     search.artist( q, page, function ( err, data ) {
-        if ( err ) {
-            return errorHandler( err, res );
-        }
-        return res.json( data );
-    } );
-
-};
-
-exports.uriLookup = function ( req, res ) {
-
-    var uri = req.query.uri;
-    var extras = req.query.extras;
-
-    if ( extras ) {
-        extras = extras.split( "," );
-    }
-
-    var search = SpotifySearch();
-    search.lookup( uri, extras, function ( err, data ) {
         if ( err ) {
             return errorHandler( err, res );
         }
