@@ -8,6 +8,7 @@
     "jade": "~0.31.2",
     "spotify-metadata-search": "~0.0.7",
     "lastfmapi": "~0.0.5",
-    "sqlite3": "^2.2.0"
+    "sqlite3": "^2.2.0",
+    "async": "~0.7.0"
   }
 }
