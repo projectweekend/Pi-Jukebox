@@ -1,5 +1,6 @@
 var SpotifySearch = require( 'spotify-metadata-search' ),
-    LastfmAPI = require('lastfmapi');
+    LastfmAPI = require('lastfmapi'),
+    async = require('async');
 
 
 var errorHandler = function ( err, res ) {
@@ -36,11 +37,28 @@ exports.byURI = function ( req, res ) {
             }
         };
 
-        // Get more interesting data from lastFM
-        // TODO: use Async library here to make calls to external services
-        // LastFM.artist.getInfo();
+        // Get more interesting data from other services
+        var tasks = {
+            lastFmArtistInfo: function ( callback ) {
+                var params = {
+                    artist: data.artist.name
+                };
+                LastFM.artist.getInfo( params, function ( err, artist ) {
+                    if ( err ) {
+                        return callback( err );
+                    }
+                    callback( null, artist );
+                } );
+            }
+        };
+        async.parallel( tasks, function ( err, results ) {
+            output.artist.image = results.lastFmArtistInfo.image[2]['#text'];
+            if ( err ) {
+                return errorHandler( err, res );
+            }
+            return res.json( output );
+        } );
 
-        return res.json( data );
     } );
 
 };
