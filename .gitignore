@@ -63,3 +63,6 @@ node_modules/
 
 # Vagrant stuff
 .vagrant
+
+# Start dev environment with API keys I don’t want to commit
+start_dev_server.sh
