@@ -45,7 +45,8 @@ exports.byArtistURI = function ( req, res ) {
             }
         };
         async.parallel( tasks, function ( err, results ) {
-            output.image = results.lastFmArtist.image[2]['#text'];
+            var biggestImage = results.lastFmArtist.image.pop();
+            output.image = biggestImage['#text'];
             if ( err ) {
                 return errorHandler( err, res );
             }
