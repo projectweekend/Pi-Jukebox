@@ -6,7 +6,7 @@ var logError = function ( data ) {
     console.log( data );
 };
 
-var sModule = angular.module( 'myApp.services', [] );
+var sModule = angular.module( 'myApp.services', [ 'ngSanitize' ] );
 
 
 sModule.factory( 'socket', function ( socketFactory ) {

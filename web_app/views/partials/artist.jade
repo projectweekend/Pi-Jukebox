@@ -3,13 +3,14 @@ div(class="row")
     h1 {{ SpotifyLookup.results.name }}
     div(class="row")
       div(class="col-md-4")
-        img(class="img-responsive", ng-src="SpotifyLookup.results.image", alt="Image of {{ SpotifyLookup.results.name }}")
+        img(class="img-responsive", ng-src="{{ SpotifyLookup.results.image }}", alt="Image of {{ SpotifyLookup.results.name }}")
       div(class="col-md-8")
-        p(class="lead") {{ SpotifyLookup.results.bio }}
+        p(ng-bind-html="SpotifyLookup.results.bio")
       
 
 div(class="row")
   div(class="col-md-10 col-md-offset-1")
+    h2 Albums
     div(class="row")
       div(ng-repeat="a in SpotifyLookup.results.albumsUS", class="col-md-6 search-result")
         h5(class="album") 
