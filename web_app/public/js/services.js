@@ -51,7 +51,7 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
         },
         artist: function ( artistURI ) {
             var self = this;
-            var url = "/api/lookup?uri=" + artistURI + "&extras=albumdetail";
+            var url = "/api/lookup/artist?uri=" + artistURI;
             $http.get( url ).
                 success( function ( data, status ) {
                     self.results = data.artist;
