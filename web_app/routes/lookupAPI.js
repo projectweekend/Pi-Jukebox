@@ -27,9 +27,9 @@ exports.byArtistURI = function ( req, res ) {
         // start building the output object
         var output = {
             name: data.artist.name,
-            href: data.artist.href
+            href: data.artist.href,
+            albums: data.artist.albums
         };
-
         // Get more interesting data from other services
         var tasks = {
             lastFmArtist: function ( callback ) {

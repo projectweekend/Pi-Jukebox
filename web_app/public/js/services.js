@@ -54,10 +54,10 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
             var url = "/api/lookup/artist?uri=" + artistURI;
             $http.get( url ).
                 success( function ( data, status ) {
-                    self.results = data.artist;
+                    self.results = data;
                     self.results.albumsUS = [];
-                    data.artist.albums.forEach( function ( element, index, array ) {
-                        var territories = element.availability.territories;
+                    data.albums.forEach( function ( element, index, array ) {
+                        var territories = element.album.availability.territories;
                         if ( territories.indexOf( 'US' ) != -1 ) {
                             self.results.albumsUS.push( element );
                         }
