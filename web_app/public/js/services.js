@@ -8,9 +8,11 @@ var logError = function ( data ) {
 
 var sModule = angular.module( 'myApp.services', [] );
 
+
 sModule.factory( 'socket', function ( socketFactory ) {
     return socketFactory();
 } );
+
 
 sModule.factory( 'SpotifySearch', function ( $http ) {
     return {
@@ -34,6 +36,7 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
         }
     };
 } );
+
 
 sModule.factory( 'SpotifyLookup', function ( $http ) {
     return {
@@ -69,6 +72,7 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
         }
     };
 } );
+
 
 sModule.factory( 'Jukebox', function ( $http, socket ) {
     return {
