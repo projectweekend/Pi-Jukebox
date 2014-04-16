@@ -1,6 +1,6 @@
 web:
     build: .
-    command: node app.js
+    command: sh start_dev_server.sh
     volumes:
         - .:/project_root
     ports:
