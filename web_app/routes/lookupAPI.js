@@ -15,6 +15,46 @@ var LastFM = new LastfmAPI({
 });
 
 
+exports.byArtistURI = function ( req, res ) {
+
+    var uri = req.query.uri;
+
+    var search = SpotifySearch();
+    search.lookup( uri, [ "albumdetail" ], function ( err, data ) {
+        if ( err ) {
+            return errorHandler( err, res );
+        }
+        var output = {
+            href: data.artist.href,
+            name: data.artist.name
+        };
+    } );
+
+    // Get more interesting data from other services
+    var tasks = {
+        lastFmArtist: function ( callback ) {
+            var params = {
+                artist: data.artist.name
+            };
+            LastFM.artist.getInfo( params, function ( err, artist ) {
+                if ( err ) {
+                    return callback( err );
+                }
+                callback( null, artist );
+            } );
+        }
+    };
+    async.parallel( tasks, function ( err, results ) {
+        output.artist.image = results.lastFmArtist.image[2]['#text'];
+        if ( err ) {
+            return errorHandler( err, res );
+        }
+        return res.json( output );
+    } );
+
+};
+
+
 exports.byURI = function ( req, res ) {
 
     var uri = req.query.uri;
