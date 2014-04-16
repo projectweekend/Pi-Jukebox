@@ -24,10 +24,12 @@ exports.byArtistURI = function ( req, res ) {
         if ( err ) {
             return errorHandler( err, res );
         }
+        // start building the output object
         var output = {
-            href: data.artist.href,
-            name: data.artist.name
+            name: data.artist.name,
+            href: data.artist.href
         };
+
         // Get more interesting data from other services
         var tasks = {
             lastFmArtist: function ( callback ) {
@@ -43,12 +45,13 @@ exports.byArtistURI = function ( req, res ) {
             }
         };
         async.parallel( tasks, function ( err, results ) {
-            output.artist.image = results.lastFmArtist.image[2]['#text'];
+            output.image = results.lastFmArtist.image[2]['#text'];
             if ( err ) {
                 return errorHandler( err, res );
             }
             return res.json( output );
         } );
+
     } );
 
 };
