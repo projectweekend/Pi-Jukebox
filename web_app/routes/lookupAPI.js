@@ -45,8 +45,11 @@ exports.byArtistURI = function ( req, res ) {
             }
         };
         async.parallel( tasks, function ( err, results ) {
+            // artist profile image
             var biggestImage = results.lastFmArtist.image.pop();
             output.image = biggestImage['#text'];
+            // 
+            output.bio = results.lastFmArtist.bio.summary;
             if ( err ) {
                 return errorHandler( err, res );
             }
