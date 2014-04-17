@@ -13,7 +13,7 @@ div(class="row")
     h3 Albums
     div(class="row")
       div(ng-repeat="a in SpotifyLookup.results.albumsUS", class="col-md-6 search-result")
-        h5(class="album") 
+        h5(class="album truncate") 
           a(ng-href="/album/{{ a.album.href }}") {{ a.album.name }}
-        p(class="artist") Artist: {{ a.album.artist }}
+        p(class="artist truncate") Artist: {{ a.album.artist }}
         p(class="year") Year: {{ a.album.released }}
