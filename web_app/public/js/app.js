@@ -11,7 +11,8 @@ var app = angular.module( 'myApp', [
     'myApp.directives',
 
     // 3rd party dependencies
-    'btford.socket-io'
+    'btford.socket-io',
+    'fully-loaded'
 ] );
 
 app.config( function ( $routeProvider, $locationProvider ) {
