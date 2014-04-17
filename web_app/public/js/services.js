@@ -54,12 +54,20 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
 sModule.factory( 'SpotifyLookup', function ( $http ) {
     return {
         results: {},
+        status: {
+            loading: false,
+            error: false
+        },
         album: function ( albumURI ) {
             var self = this;
             var url = "/api/lookup?uri=" + albumURI + "&extras=trackdetail";
+
+            self.status.loading = true;
             $http.get( url ).
                 success( function ( data, status ) {
                     self.results = data.album;
+                    self.status.loading = false;
+                    self.status.error = false;
                 } ).
                 error( function ( data, status ) {
                     logError( data );
