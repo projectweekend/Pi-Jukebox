@@ -1,7 +1,13 @@
 /* app css stylesheet */
 
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .search-result {
-  height: 120px;
   margin-bottom: 20px;
 }
 

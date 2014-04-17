@@ -9,10 +9,10 @@ div(class="row")
   div(class="col-md-10 col-md-offset-1")
     div(class="row")
       div(ng-repeat="r in SpotifySearch.results", class="col-md-6 search-result")
-        h4(class="track") {{ r.name }}
-        p(class="artist") Artist: 
+        h4(class="track truncate") {{ r.name }}
+        p(class="artist truncate") Artist: 
           a(ng-href="/artist/{{ r.artists[0].href }}") {{ r.artists[0].name }}
-        p(class="album") Album: 
+        p(class="album truncate") Album: 
           a(ng-href="/album/{{ r.album.href }}") {{ r.album.name }}
         p(class="year") Year: {{ r.album.released }}
         div(class="buttons btn-toolbar")
