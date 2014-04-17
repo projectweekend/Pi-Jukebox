@@ -2,9 +2,9 @@ div(id="artist-profile", class="row")
   div(class="col-md-10 col-md-offset-1")
     h1 {{ SpotifyLookup.results.name }}
     div(class="row")
-      div(class="col-md-5")
+      div(class="col-md-4")
         img(class="img-responsive", ng-src="{{ SpotifyLookup.results.image }}", alt="Image of {{ SpotifyLookup.results.name }}")
-      div(class="col-md-7")
+      div(class="col-md-8")
         p(ng-bind-html="SpotifyLookup.results.bio")
       
 
