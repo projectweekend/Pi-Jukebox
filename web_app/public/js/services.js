@@ -6,6 +6,7 @@ var logError = function ( data ) {
     console.log( data );
 };
 
+
 var sModule = angular.module( 'myApp.services', [ 'ngSanitize' ] );
 
 
