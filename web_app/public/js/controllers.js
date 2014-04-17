@@ -16,8 +16,10 @@ cModule.controller( 'HomeCtrl', function ( $scope, socket, SpotifySearch, Jukebo
 
     $scope.$watch( 'searchInput', function ( val ) {
         if ( !val || val.length === 0 ) {
+            $scope.SpotifySearch.status.loading = false;
             return 0;
         }
+        $scope.SpotifySearch.status.loading = true;
         setTimeout( function () {
             if ( val === $scope.searchInput ) {
                 $scope.SpotifySearch.byTrack( $scope.searchInput );
