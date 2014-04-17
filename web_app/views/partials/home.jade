@@ -6,8 +6,9 @@ div(class="row")
         input(ng-model="searchInput", class="form-control", type="text", placeholder="song, album, or artist name...")
 
 div(class="row")
-  fl-loading(data="SpotifySearch.status", template="search/loading.html")
-  fl-error(data="SpotifySearch.status", template="search/error.html")    
+  div(class="col-md-10 col-md-offset-1")
+    fl-loading(data="SpotifySearch.status", template="search/loading.html")
+    fl-error(data="SpotifySearch.status", template="search/error.html")    
 
 div(ng-if="!SpotifySearch.status.loading && !SpotifySearch.status.error", class="row")
   div(class="col-md-10 col-md-offset-1")
