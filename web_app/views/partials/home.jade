@@ -13,7 +13,7 @@ div(class="row")
 div(ng-if="!SpotifySearch.status.loading && !SpotifySearch.status.error", class="row")
   div(class="col-md-10 col-md-offset-1")
     div(class="row")
-      div(ng-repeat="r in SpotifySearch.results", class="col-md-6 search-result")
+      div(ng-repeat="r in SpotifySearch.results", class="col-sm-6 search-result")
         h4(class="track truncate") {{ r.name }}
         p(class="artist truncate") Artist: 
           a(ng-href="/artist/{{ r.artists[0].href }}") {{ r.artists[0].name }}
