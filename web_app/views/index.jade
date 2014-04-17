@@ -16,3 +16,9 @@ block body
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
+
+  script(type="text/ng-template", id="search/loading.html")
+    div(class="alert alert-info") Searching tracks on Spotify...
+
+  script(type="text/ng-template", id="search/error.html")
+    div(class="alert alert-danger") Unable to contact Spotify...

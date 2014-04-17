@@ -17,9 +17,16 @@ sModule.factory( 'socket', function ( socketFactory ) {
 sModule.factory( 'SpotifySearch', function ( $http ) {
     return {
         results: [],
+        status: {
+            loading: false,
+            error: false
+        },
         byTrack: function ( searchText ) {
+
             var self = this;
             var url = '/api/search/tracks?q=' + searchText;
+
+            self.status.loading = true;
             $http.get( url ).
                 success( function ( data, status ) {
                     self.results = [];
@@ -29,10 +36,15 @@ sModule.factory( 'SpotifySearch', function ( $http ) {
                             self.results.push( element );
                         }
                     } );
+                    self.status.loading = false;
+                    self.status.error = false;
                 } ).
                 error( function ( data, status ) {
                     logError( data );
+                    self.status.loading = false;
+                    self.status.error = true;
                 } );
+
         }
     };
 } );
