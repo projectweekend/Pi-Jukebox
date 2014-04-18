@@ -61,6 +61,11 @@ exports.byArtistURI = function ( req, res ) {
 };
 
 
+exports.byAlbumURI = function ( req, res ) {
+
+};
+
+
 exports.byURI = function ( req, res ) {
 
     var uri = req.query.uri;
