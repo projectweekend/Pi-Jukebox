@@ -1,4 +1,10 @@
-div(id="artist-profile", class="row")
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
+    fl-loading(data="SpotifyLookup.status", template="artist/loading.html")
+    fl-error(data="SpotifyLookup.status", template="artist/error.html")
+
+
+div(ng-if="!SpotifyLookup.status.loading && !SpotifyLookup.status.error", id="artist-profile", class="row")
   div(class="col-md-10 col-md-offset-1")
     h1 {{ SpotifyLookup.results.name }}
     div(class="row")
@@ -8,7 +14,7 @@ div(id="artist-profile", class="row")
         p(ng-bind-html="SpotifyLookup.results.bio")
       
 
-div(class="row")
+div(ng-if="!SpotifyLookup.status.loading && !SpotifyLookup.status.error", class="row")
   div(class="col-md-10 col-md-offset-1")
     h3 Albums
     div(class="row")
