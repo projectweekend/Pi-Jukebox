@@ -8,9 +8,10 @@ div(ng-if="!SpotifyLookup.status.loading && !SpotifyLookup.status.error", id="ar
   div(class="col-md-10 col-md-offset-1")
     h1 {{ SpotifyLookup.results.name }}
     div(class="row")
-      div(class="col-md-4")
-        img(class="img-responsive", ng-src="{{ SpotifyLookup.results.image }}", alt="Image of {{ SpotifyLookup.results.name }}")
-      div(class="col-md-8")
+      div(class="col-sm-4")
+        div(class="image-wrapper")
+          img(class="img-responsive", ng-src="{{ SpotifyLookup.results.image }}", alt="Image of {{ SpotifyLookup.results.name }}")
+      div(class="col-sm-8")
         p(ng-bind-html="SpotifyLookup.results.bio")
       
 
@@ -18,7 +19,7 @@ div(ng-if="!SpotifyLookup.status.loading && !SpotifyLookup.status.error", class=
   div(class="col-md-10 col-md-offset-1")
     h3 Albums
     div(class="row")
-      div(ng-repeat="a in SpotifyLookup.results.albumsUS", class="col-md-6 search-result")
+      div(ng-repeat="a in SpotifyLookup.results.albumsUS", class="col-sm-6 search-result")
         h5(class="album truncate") 
           a(ng-href="/album/{{ a.album.href }}") {{ a.album.name }}
         p(class="artist truncate") Artist: {{ a.album.artist }}

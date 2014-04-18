@@ -76,6 +76,8 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
         artist: function ( artistURI ) {
             var self = this;
             var url = "/api/lookup/artist?uri=" + artistURI;
+
+            self.status.loading = true;
             $http.get( url ).
                 success( function ( data, status ) {
                     self.results = data;
@@ -86,9 +88,13 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
                             self.results.albumsUS.push( element );
                         }
                     } );
+                    self.status.loading = false;
+                    self.status.error = false;
                 } ).
                 error( function ( data, status ) {
                     logError( data );
+                    self.status.loading = false;
+                    self.status.error = true;                    
                 } );
         }
     };
