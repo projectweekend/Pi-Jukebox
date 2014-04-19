@@ -56,7 +56,6 @@ app.get('/api/search/albums', spotifyAPI.albumSearch);
 app.get('/api/search/artists', spotifyAPI.artistSearch);
 app.get('/api/lookup/artist', lookupAPI.byArtistURI);
 app.get('/api/lookup/album', lookupAPI.byAlbumURI);
-app.get('/api/lookup', lookupAPI.byURI);
 app.get('/api/jukebox', jukeboxAPI.getTrackQueue);
 app.post('/api/jukebox', jukeboxAPI.addTrackToQueue(io));
 
