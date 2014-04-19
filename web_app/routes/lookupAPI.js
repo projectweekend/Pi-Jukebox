@@ -63,6 +63,49 @@ exports.byArtistURI = function ( req, res ) {
 
 exports.byAlbumURI = function ( req, res ) {
 
+    var uri = req.query.uri;
+
+    var search = SpotifySearch();
+    search.lookup( uri, [ "track" ], function ( err, data ) {
+        if ( err ) {
+            return errorHandler( err, res );
+        }
+        // start building the output object
+        var output = {
+            name: data.album.name,
+            href: data.album.href,
+            artist: {
+                name: data.album.artist,
+                href: data.album["artist-id"]
+            },
+            tracks: data.album.tracks
+        };
+        var tasks = {
+            lastFmAlbum: function ( callback ) {
+                var params = {
+                    artist: data.album.artist,
+                    album: data.album.name
+                };
+                LastFM.album.getInfo( params, function ( err, album ) {
+                    if ( err ) {
+                        return callback( err );
+                    }
+                    callback( null, album );
+                } );
+            }
+        };
+        async.parallel( tasks, function ( err, results ) {
+            if ( err ) {
+                return errorHandler( err, res );
+            }
+            var biggestImage = results.lastFmAlbum.image.pop();
+            output.image = biggestImage["#text"];
+            output.released = results.lastFmAlbum.releasedate;
+            output.wiki = results.lastFmAlbum.wiki.content;
+            return res.json( output );
+        } );
+    } );
+
 };
 
 
