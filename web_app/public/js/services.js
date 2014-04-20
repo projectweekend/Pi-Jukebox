@@ -60,17 +60,19 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
         },
         album: function ( albumURI ) {
             var self = this;
-            var url = "/api/lookup?uri=" + albumURI + "&extras=trackdetail";
+            var url = "/api/lookup/album?uri=" + albumURI;
 
             self.status.loading = true;
             $http.get( url ).
                 success( function ( data, status ) {
-                    self.results = data.album;
+                    self.results = data;
                     self.status.loading = false;
                     self.status.error = false;
                 } ).
                 error( function ( data, status ) {
                     logError( data );
+                    self.status.loading = false;
+                    self.status.error = true;
                 } );
         },
         artist: function ( artistURI ) {
@@ -94,7 +96,7 @@ sModule.factory( 'SpotifyLookup', function ( $http ) {
                 error( function ( data, status ) {
                     logError( data );
                     self.status.loading = false;
-                    self.status.error = true;                    
+                    self.status.error = true;
                 } );
         }
     };

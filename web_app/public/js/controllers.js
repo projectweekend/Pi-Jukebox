@@ -44,6 +44,7 @@ cModule.controller( 'AlbumCtrl', function ( $scope, $routeParams, SpotifyLookup,
     
     $scope.SpotifyLookup = SpotifyLookup;
     $scope.SpotifyLookup.album( $routeParams.albumURI );
+    console.log( $scope.SpotifyLookup );
 
     $scope.Jukebox = Jukebox;
 
