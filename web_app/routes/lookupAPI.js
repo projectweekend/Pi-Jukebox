@@ -101,7 +101,11 @@ exports.byAlbumURI = function ( req, res ) {
             var biggestImage = results.lastFmAlbum.image.pop();
             output.image = biggestImage["#text"];
             output.released = results.lastFmAlbum.releasedate;
-            output.wiki = results.lastFmAlbum.wiki.content;
+            if ( results.lastFmAlbum.wiki ) {
+                output.wiki = results.lastFmAlbum.wiki.content;
+            } else {
+                output.wiki = "No content available for this album.";
+            }
             return res.json( output );
         } );
     } );
