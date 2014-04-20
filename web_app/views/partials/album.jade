@@ -1,11 +1,18 @@
 div(class="row")
   div(class="col-md-10 col-md-offset-1")
+    fl-loading(data="SpotifyLookup.status", template="album/loading.html")
+    fl-error(data="SpotifyLookup.status", template="album/error.html")
+
+
+div(class="row")
+  div(class="col-md-10 col-md-offset-1")
     h1 {{ SpotifyLookup.results.name }}
     div(class="row")
       div(class="col-sm-4")
         img(class="img-responsive", ng-src="{{ SpotifyLookup.results.image }}", alt="Image of album cover:{{ SpotifyLookup.results.name }}")
       div(class="col-sm-8")
         p(ng-bind-html="SpotifyLookup.results.wiki")
+
 
 div(class="row")
   div(class="col-md-10 col-md-offset-1")
