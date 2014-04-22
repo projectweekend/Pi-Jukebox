@@ -4,6 +4,12 @@ div(class="row")
     fl-error(data="SpotifyLookup.status", template="album/error.html")
 
 
+div(row)
+  div(class="col-md-10 col-md-offset-1")
+    div(class="btn-toolbar")
+      a(class="btn btn-default pull-right", href="/home") Back to search      
+
+
 div(ng-if="!SpotifyLookup.status.loading && !SpotifyLookup.status.error", class="row")
   div(class="col-md-10 col-md-offset-1")
     h1 {{ SpotifyLookup.results.name }}
