@@ -107,16 +107,26 @@ sModule.factory( 'Jukebox', function ( $http, socket ) {
     return {
         playQueue: [],
         playHistory: [],
+        status: {
+            loading: false,
+            error: false
+        },
         play: function ( uri ) {
+            var self = this;
             var url = "/api/jukebox";
             var body = {
                 uri: uri
             };
+            self.status.loading = true;
             $http.post( url, body ).
                 success( function ( data, status ) {
+                    self.status.loading = false;
+                    self.status.error = false;
                 } ).
                 error( function ( data, status ) {
                     logError( data );
+                    self.status.loading = false;
+                    self.status.error = true;
                 } );
         },
         listenForUpdates: function   () {
