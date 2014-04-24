@@ -9,3 +9,16 @@ dModule.directive( 'appVersion', function ( version ) {
         elm.text( version );
     };
 } );
+
+
+dModule.directive( 'jukeboxTrack', function ( ) {
+    return {
+        restrict: 'E',
+        scope: {
+            data: "="
+        },
+        templateUrl: "",
+        link: function ( scope, element, attrs ) {
+        }
+    };
+} );
