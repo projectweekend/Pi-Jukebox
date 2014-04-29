@@ -4,6 +4,7 @@
 
 var cModule = angular.module( 'myApp.controllers', [] );
 
+
 cModule.controller( 'AppCtrl', function ( $scope, socket ) {
     socket.on( 'send:name', function ( data ) {
         $scope.name = data.name;

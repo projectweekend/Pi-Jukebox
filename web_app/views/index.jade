@@ -1,36 +1,39 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
+    div(ng-controller='AppCtrl')
 
     div(ng-view, class="container")
 
-  script(src='/socket.io/socket.io.js')
-  script(src='bower_components/angular/angular.js')
-  script(src='bower_components/angular-route/angular-route.js')
-  script(src='bower_components/angular-socket-io/socket.js')
-  script(src="bower_components/angular-sanitize/angular-sanitize.min.js")
-  script(src="js/lib/angular-fully-loaded/angular-fully-loaded.js")
-  script(src='js/app.js')
-  script(src='js/services.js')
-  script(src='js/controllers.js')
-  script(src='js/filters.js')
-  script(src='js/directives.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='bower_components/angular/angular.js')
+    script(src='bower_components/angular-route/angular-route.js')
+    script(src='bower_components/angular-socket-io/socket.js')
+    script(src="bower_components/angular-sanitize/angular-sanitize.min.js")
+    script(src="js/lib/angular-fully-loaded/angular-fully-loaded.js")
+    script(src='js/app.js')
+    script(src='js/services.js')
+    script(src='js/controllers.js')
+    script(src='js/filters.js')
+    script(src='js/directives.js')
 
-  script(type="text/ng-template", id="search/loading.html")
-    div(class="alert alert-info") Searching for tracks...
+    script(type="text/ng-template", id="search/loading.html")
+        div(class="alert alert-info") Searching for tracks...
 
-  script(type="text/ng-template", id="search/error.html")
-    div(class="alert alert-danger") Unable to contact Spotify...
+    script(type="text/ng-template", id="search/error.html")
+        div(class="alert alert-danger") Unable to contact Spotify...
 
-  script(type="text/ng-template", id="artist/loading.html")
-    div(class="alert alert-info") Looking up artist...
+    script(type="text/ng-template", id="artist/loading.html")
+        div(class="alert alert-info") Looking up artist...
 
-  script(type="text/ng-template", id="artist/error.html")
-    div(class="alert alert-danger") Unable to contact Spotify...
+    script(type="text/ng-template", id="artist/error.html")
+        div(class="alert alert-danger") Unable to contact Spotify...
 
-  script(type="text/ng-template", id="album/loading.html")
-    div(class="alert alert-info") Looking up album...
+    script(type="text/ng-template", id="album/loading.html")
+        div(class="alert alert-info") Looking up album...
 
-  script(type="text/ng-template", id="album/error.html")
-    div(class="alert alert-danger") Unable to contact Spotify...
+    script(type="text/ng-template", id="album/error.html")
+        div(class="alert alert-danger") Unable to contact Spotify...
+
+    script(type="text/ng-template", id="jukebox/track.html")
+        div() Jukebox Track Template
