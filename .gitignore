@@ -66,3 +66,7 @@ node_modules/
 
 # Start dev environment with API keys I don’t want to commit
 start_dev_server.sh
+
+# Sublime Text 2 stuff
+*.sublime-project
+*.sublime-workspace
