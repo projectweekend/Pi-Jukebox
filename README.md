@@ -25,7 +25,7 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 
 **Response:**
 
-```
+```json
 {
     "info": {
         "num_results": 985,
@@ -102,11 +102,11 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 **Parameters:**
 
 * `q`: Search string (required)
-* `page`: The page of the result set to return (optional - defaults to 1) 
+* `page`: The page of the result set to return (optional - defaults to 1)
 
 **Response:**
 
-```
+```json
 {
     "info": {
         "num_results": 125,
@@ -169,11 +169,11 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 **Parameters:**
 
 * `q`: Search string (required)
-* `page`: The page of the result set to return (optional - defaults to 1) 
+* `page`: The page of the result set to return (optional - defaults to 1)
 
 **Response:**
 
-```
+```json
 {
     "info": {
         "num_results": 1,
@@ -204,12 +204,12 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 
 **Response:**
 
-```
+```json
 {
-    track: 
+    track:
     {
         available: true,
-        album: 
+        album:
         {
             released: "1996",
             href: "spotify:album:24E6rDvGDuYFjlGewp4ntF",
@@ -231,13 +231,13 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
                 name: "Rage Against The Machine"
             }
         ],
-        availability: 
+        availability:
         {
             territories: "AD AR AT AU BE BG BO BR CA CH CL CO CR CY CZ DE DK DO EC EE ES FI FR GB GR GT HK HN HR HU IE IS IT LI LT LU LV MC MT MX MY NI NL NO NZ PA PE PH PL PT PY RO SE SG SI SK SV TR TW US UY"
         },
         track-number: "3"
     },
-    info: 
+    info:
     {
         type: "track"
     }
@@ -255,7 +255,7 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 
 **Response:**
 
-```
+```json
 [
     {
         "spotify_uri": "spotify:track:1lCC3flXDsXQrNPcvDojuI",
@@ -284,14 +284,14 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 
 **Payload:**
 
-```
+```json
 {
     "uri": "spotify:track:7yX8ayPTlR5kjECfCyS7ZN"
 }
 ```
 
 **Response:**
-```
+```json
 {
     "track_added": "spotify:track:7yX8ayPTlR5kjECfCyS7ZN"
 }
@@ -303,7 +303,7 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 
 **Data:**
 
-```
+```json
 {
     $uri: "spotify:track:6y1I8cGzw6KWy2zPA572Jq",
     $name: "Lady Picture Show",
@@ -315,7 +315,7 @@ I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker
 ```
 
 **AngularJS Controller Example:**
-```
+```javascript
 cModule.controller( 'MyCtrl1', function ( $scope, socket ) {
     socket.on( 'track:added', function ( data ) {
         $scope.myPlayQueue.push( data );
