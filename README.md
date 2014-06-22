@@ -1,8 +1,6 @@
 # Moving along...
 I am no longer working on this project. It was a fun attempt at a jukebox for the Raspberry Pi, but ultimately the [Mopidy](http://www.mopidy.com/) project has most of the features I was hoping to build here, like a nice Websocket and HTTP API. With that said, I am starting a new project that is a web client for the Mopidy API.
 
-A Raspberry Pi jukebox powered by Spotify
-
 ## Launch Development Environment
 I'm using [Vagrant](http://docs.vagrantup.com/v2/why-vagrant/index.html)/[Docker](https://www.docker.io/learn_more/)/[Fig](http://orchardup.github.io/fig/) to provide a portable development environment for development away from the Raspberry Pi. To launch the environment you can use the following commands, however it helps if you are familar with each of the three services being used. Check out the links above for more info.
 
