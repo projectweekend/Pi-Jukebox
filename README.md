@@ -1,5 +1,5 @@
-Pi-Jukebox
-==========
+# Moving along...
+I am no longer working on this project. It was a fun attempt at a jukebox for the Raspberry Pi, but ultimately the [Mopidy](http://www.mopidy.com/) project has most of the features I was hoping to build here, like a nice Websocket and HTTP API. With that said, I am starting a new project that is a web client for the Mopidy API.
 
 A Raspberry Pi jukebox powered by Spotify
 
